@@ -33,5 +33,15 @@ const update = (req, res) => {
   res.json(updateUser)
 }
 
+// REMOVE -- DELETE /users/:id
+const remove = (req, res) => {
+  let user = users.find( user => user.id == req.params.id)
 
-module.exports = { list, show, create, update }
+  if(user) {
+    user.isActive = "false"
+  }
+  res.json(user)
+}
+
+
+module.exports = { list, show, create, update, remove }

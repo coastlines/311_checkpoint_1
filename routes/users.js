@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 //const { list, show, create, update, remove } = require('../controllers/users.js')
-const { list, show, create, update } = require('../controllers/users.js')
+const { list, show, create, update, remove } = require('../controllers/users.js')
 
 // GET /users
 router.get('/users', list)
@@ -15,7 +15,7 @@ router.post('/users', create)
 // PUT /users/:id
 router.put('/users/:id', update)
 
-// // DELETE /users/:id
-// router.delete('/users/:id', remove)
+// DELETE /users/:id
+router.delete('/users/:id', remove)
 
 module.exports = router;
