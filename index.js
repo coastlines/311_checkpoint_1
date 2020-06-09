@@ -7,6 +7,11 @@ app.use(bodyParser.json())
 
 app.get('/', (req, res) => res.send('default route'))
 
+const userRoute = require('./routes/users')
+
+app.use(userRoute)
+
+
 app.listen(port, () => {
   console.log('app is listening on:', port)
 })

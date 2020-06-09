@@ -4,4 +4,9 @@ const list = (req, res) => {
   res.json(users)
 }
 
-module.exports = { list }
+const show = (req, res) => {
+  let user = users.find( user => user.id == req.params.id)
+  res.json(user)
+}
+
+module.exports = { list, show }
