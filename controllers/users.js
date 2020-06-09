@@ -23,5 +23,15 @@ const create = (req, res) => {
 }
 
 // UPDATE -- PUT /users/:id
+const update = (req, res) => {
+  let userId = users.find( user => user.id == req.params.id)
+  let index = users.indexOf(userId);
+  let user = users[index];
+  
+  let updateUser = Object.assign(user, req.body);
+  
+  res.json(updateUser)
+}
 
-module.exports = { list, show, create }
+
+module.exports = { list, show, create, update }

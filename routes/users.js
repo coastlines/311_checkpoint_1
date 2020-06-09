@@ -13,7 +13,7 @@ router.get('/users/:id', show)
 router.post('/users', create)
 
 // PUT /users/:id
-router.put('/users:id', update)
+router.put('/users/:id', update)
 
 // // DELETE /users/:id
 // router.delete('/users/:id', remove)
