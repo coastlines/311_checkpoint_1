@@ -4,7 +4,7 @@ const users = require('../data/index')
 const list = (req, res) => {
  
   if(!users) {
-    res.status(404).send(`Uh-oh! There don't appear to be any users here.`)
+    res.status(404).send({error:`Uh-oh! There don't appear to be any users here.`})
   } else {
     res.json(users)
   }
@@ -16,7 +16,7 @@ const listActive = (req, res) => {
   let active = users.filter( user => user.isActive !== false )
  
   if(!active || active.length === 0) {
-    res.status(404).send(`Uh-oh! There don't appear to be any active users.`)
+    res.status(404).send({error: `Uh-oh! There don't appear to be any active users.`})
   } else {
     res.json(active)
   }
@@ -28,7 +28,7 @@ const listInactive = (req, res) => {
   let inactive = users.filter( user => user.isActive === false )
  
   if(!inactive || inactive.length === 0) {
-    res.status(404).send(`Uh-oh! There don't appear to be any inactive users.`)
+    res.status(404).send({error: `Uh-oh! There don't appear to be any inactive users.`})
   } else {
     res.json(inactive)
   }
@@ -40,7 +40,7 @@ const show = (req, res) => {
   let user = users.find( user => user.id == req.params.id)
 
   if (!user) {
-    res.status(404).send(`User ${req.params.id} does not exist.`)
+    res.status(404).send({error: `User ${req.params.id} does not exist.`})
   } else {
     res.json(user)
   }
@@ -53,7 +53,7 @@ const create = (req, res) => {
   let newId = users.length + 1
 
   if (Object.keys(req.body).length === 0) {
-    res.status(400).send(`User ${req.params.id} could not be updated. Body of request was null.`)
+    res.status(400).send({error: `User ${req.params.id} could not be updated. Body of request was null.`})
 
   } else {
     newUser.id = newId
@@ -70,10 +70,10 @@ const update = (req, res) => {
   let user = users[index];
   
   if (!userId) {
-    res.status(400).send(`User ${req.params.id} could not be updated. User does not exist.`)
+    res.status(400).send({error: `User ${req.params.id} could not be updated. User does not exist.`})
 
   } else if (Object.keys(req.body).length === 0) {
-    res.status(404).send(`User ${req.params.id} could not be updated. Body of request was null.`)
+    res.status(404).send({error: `User ${req.params.id} could not be updated. Body of request was null.`})
 
   } else {
     let updateUser = Object.assign(user, req.body);
@@ -87,7 +87,7 @@ const remove = (req, res) => {
   let user = users.find( user => user.id == req.params.id)
 
   if (!user) {
-    res.status(400).send(`User ${req.params.id} could not be deleted. User does not exist.`)
+    res.status(400).send({error: `User ${req.params.id} could not be deleted. User does not exist.`})
   } else {
     user.isActive = false
     res.json(user)
