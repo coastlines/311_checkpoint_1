@@ -1,10 +1,16 @@
 const express = require('express')
 const router = express.Router()
 //const { list, show, create, update, remove } = require('../controllers/users.js')
-const { list, show, create, update, remove } = require('../controllers/users.js')
+const { list, listActive, listInactive, show, create, update, remove } = require('../controllers/users.js')
 
 // GET /users
 router.get('/users', list)
+
+// GET /users/active
+router.get('/users/active', listActive)
+
+// GET /users/inactive
+router.get('/users/inactive', listInactive)
 
 // GET /users/:id
 router.get('/users/:id', show)
